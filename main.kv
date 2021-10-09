@@ -1,100 +1,286 @@
+<ContentNavigationDrawer>:
+    orientation: "vertical"
+    padding: "8dp"
+    spacing: "8dp"
+
+    AnchorLayout:
+        anchor_x: "left"
+        size_hint_y: None
+        height: avatar.height
+
+        Image:
+            id: avatar
+            size_hint: None, None
+            size: "56dp", "56dp"
+            source: "data/logo/icon.png"
+
+    MDLabel:
+        text: "Kaimak Production"
+        font_style: "Button"
+        adaptive_height: True
+
+    MDLabel:
+        text: "kaimak_production@gmail.com"
+        font_style: "Caption"
+        adaptive_height: True
+
+    ScrollView:
+
+        DrawerList:
+            id: md_list
+
+MDScreen:
+
+    MDNavigationLayout:
+
+        ScreenManager:
+
+            MDScreen:
+
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size: root.width, root.height
+
+                    MDToolbar:
+                        title: "Kaimak Production"
+                        elevation: 10
+                        left_action_items: [['menu', lambda x: nav_drawer.set_state("open"), "Меню"]]
+
+                    MDTabs:
+                        id: tabs
+                        on_tab_switch: app.on_tab_switch(*args)
+
+                        Tab:
+                            id: tatar
+                            text: "Текущие"
+
+                            MDBoxLayout:
+                                pos_hint:{"center_x":0.5, "center_y":0.95}
+                                md_bg_color: app.theme_cls.primary_color
+                                size_hint_y: 0.1
+
+                                        #------add user button-----------------#
+                                BoxLayout:
+                                    size_hint: (None, 1)
+                                    width: self.minimum_width
+                                    size_hint_x: 0.4
+
+                                    MDLabel:
+                                        text:"Номер:"
+                                        bold:True
+
+                                    MDLabel:
+                                        text:"Название:"
+                                        bold:True
+
+                                    MDLabel:
+                                        text:"Тип Проекта:"
+                                        bold:True
+
+                            MDBoxLayout:
+                                pos_hint:{"center_x":0.5, "center_y":0.1}
+                                adaptive_size: True
+
+                                MDFloatingActionButton:
+                                    id: button
+                                    icon: "plus"
+                                    pos_hint: {"center_x": 0.5, "center_y": 0.4}
+                                    on_press: Factory.MyPopup().open()
+
+                        Tab:
+                            text: "Завершенные"
+
+                            MDBoxLayout:
+                                pos_hint:{"center_x":0.5, "center_y":0.96}
+                                md_bg_color: app.theme_cls.primary_color
+                                size_hint_y: 0.1
+
+                                    #------add user button-----------------#
+                                BoxLayout:
+                                    #size_hint: (None, 1)
+                                    #width: self.minimum_width
+                                    size_hint_x: 0.4
+                                    Label:
+                                        text:"Номер:"
+                                        bold:True
+                                BoxLayout:
+                                    Label:
+                                        text:"Название:"
+                                        bold:True
+                                BoxLayout:
+                                    Label:
+                                        text:"Тип Проекта:"
+                                        bold:True
+
+
+
+                        Tab:
+                            text: "Проебанные"
+
+                            MDBoxLayout:
+                                pos_hint:{"center_x":0.5, "center_y":0.96}
+                                md_bg_color: app.theme_cls.primary_color
+                                size_hint_y: 0.1
+
+                                        #------add user button-----------------#
+                                BoxLayout:
+                                    #size_hint: (None, 1)
+                                    #width: self.minimum_width
+                                    size_hint_x: 0.4
+                                    Label:
+                                        text:"Номер:"
+                                        bold:True
+                                BoxLayout:
+                                    Label:
+                                        text:"Название:"
+                                        bold:True
+                                BoxLayout:
+                                    Label:
+                                        text:"Тип Проекта:"
+                                        bold:True
+
+                        Tab:
+                            text: "Общие"
+
+                            MDBoxLayout:
+                                pos_hint:{"center_x":0.5, "center_y":0.96}
+                                md_bg_color: app.theme_cls.primary_color
+                                size_hint_y: 0.1
+
+                                    #------add user button-----------------#
+                                BoxLayout:
+                                    #size_hint: (None, 1)
+                                    #width: self.minimum_width
+                                    size_hint_x: 0.4
+                                    Label:
+                                        text:"Номер:"
+                                        bold:True
+                                BoxLayout:
+                                    Label:
+                                        text:"Название:"
+                                        bold:True
+                                BoxLayout:
+                                    Label:
+                                        text:"Тип Проекта:"
+                                        bold:True
+                                #BoxLayout:
+                                    #Label:
+                                        #text:"Команда:"
+                                        #bold:True
+                                #BoxLayout:
+                                    #Label:
+                                        #text:"Password"
+                                        #bold:True
+
+        MDNavigationDrawer:
+            id: nav_drawer
+
+            ContentNavigationDrawer:
+                id: content_drawer
+
 #:import Factory kivy.factory.Factory
 <MyPopup@Popup>
     auto_dismiss: True
-    size_hint: 0.9, 0.7
+    size_hint: 0.9, 0.8
     pos_hint: {"x":0.05, "top": 0.9}
     title: "НОВЫЙ ПРОЕКТ"
     title_align: 'center'
 
-    MDFloatLayout:
-        orientation: "vertical"
-        size: root.width, root.height
-
-        MDTextField:
-            multiline: False
-            font_size: "18sp"
-            pos_hint: {"x":0.0009, "y": .85}
-            hint_text: "Название проекта"
-            background_color: [139/255,139/255,139/255,1]
-            hint_text_color: [40/255,40/255,40/255,1]
-
-        MDRaisedButton:
-            text: "Выберите Лид"
-            font_size: "17sp"
-            pos_hint: {"x":0.01, "y": 0.75}
-
-        MDRaisedButton:
-            text: "Тип Проекта"
-            font_size: "17sp"
-            pos_hint: {"x":0.54, "y": .75}
-
-        MDRaisedButton:
-            text: "Выбрать Дэдлайн"
-            font_size: "17sp"
-            pos_hint: {'x': .2, 'y': .62}
-            on_release: app.show_time_picker()
-
-        MDRaisedButton:
-            text: "Выбрать Команду"
-            font_size: "17sp"
-            pos_hint: {"x":0.18, "y": .49}
-
-        MDRaisedButton:
-            text: "Выбрать Договор"
-            font_size: "17sp"
-            pos_hint: {"x":0.19, "y": .36}
-
-        MDRaisedButton:
-            text: "Проектный \n менеджер"
-            font_size: "17sp"
-            pos_hint: {"x":0.29, "y": .18}
-
-        MDRaisedButton:
-            text: "Отмена"
-            font_size: 24
-            pos_hint: {"x":0.01, "y": .02}
-            on_release: root.dismiss()
-
-        MDRaisedButton:
-            text: "Добавить"
-            font_size: 24
-            pos_hint: {"x":0.53, "y": .02}
-            on_release: root.dismiss()
-
-<MyLayout>
     MDBoxLayout:
         orientation: "vertical"
         size: root.width, root.height
 
-        MDToolbar:
-            title: "Kaimak Production"
-            title_align: 'center'
+        MDTextField:
+            id:word_input
+            multiline: False
+            font_size: "18sp"
+            pos_hint: {"x":0.0009, "y": .85}
+            hint_text: "Название проекта: "
+            background_color: [139/255,139/255,139/255,1]
+            hint_text_color: [40/255,40/255,40/255,1]
+
+        FloatLayout:
+            Spinner:
+                size_hint: 0.8, 0.13
+                size: 130, 44
+                pos_hint: {'center': (.5, .95)}
+                text: 'Выберите Лиды:'
+                values: '-Холодный/Тендер', '-Холодный/Обычный', '-Закрытый'
+                on_text:
+                    print("The spinner {} has text {}".format(self, self.text))
+
+            Spinner:
+                size_hint: 0.8, 0.13
+                size: 130, 44
+                pos_hint: {'center': (.5, .81)}
+                text: 'Тип Проекта'
+                values: '-Продакшн', '-Анимация', '-Радиоролик', '-Трансляция', '-Иллюстрации', '-Рентал '
+                on_text:
+                    print("The spinner {} has text {}".format(self, self.text))
+
+            Spinner:
+                size_hint: 0.8, 0.13
+                size: 130, 44
+                pos_hint: {'center': (.5, .67)}
+                text: 'Дедлайн'
+                values: 'Home', 'Work', 'Other', 'Custom'
+                on_text:
+                    print("The spinner {} has text {}".format(self, self.text))
+
+            Spinner:
+                size_hint: 0.8, 0.13
+                size: 130, 44
+                pos_hint: {'center': (.5, .53)}
+                text: 'Команда'
+                values: '-Сценарист', '-Перевод', '-Иллюстратор', '-Моушн Дизайнер ', '-Голос ', '-Музыка','-Оператор','-Монтаж '
+                on_text:
+                    print("The spinner {} has text {}".format(self, self.text))
+
+            Spinner:
+                size_hint: 0.8, 0.13
+                size: 130, 44
+                pos_hint: {'center': (.5, .39)}
+                text: 'Договор:'
+                values: '-ОсОО "Каймак"', '-ОсОО "Эверест"', '-ИП Эмилбаев', '-ИП Собиров'
+                on_text:
+                    print("The spinner {} has text {}".format(self, self.text))
+
+            Spinner:
+                size_hint: 0.8, 0.13
+                size: 130, 44
+                pos_hint: {"center_x": 0.5, "center_y": 0.25}
+                text: 'Проектный менеджер:'
+                values: '-Тилекмат', '-Улук', '-Кубаныч'
+                on_text:
+                    print("The spinner {} has text {}".format(self, self.text))
 
 
-        MDTabs:
-            id: tabs
-            on_tab_switch: app.on_tab_switch(*args)
+            MDRaisedButton:
+                text: "Отмена"
+                font_size: 20
+                pos_hint: {"x":0.05, "y": 0.04}
+                on_release: root.dismiss()
 
-            Tab:
-                text: "Текущие проекты"
+            MDRaisedButton:
+                text: "Добавить"
+                font_size: 20
+                pos_hint: {"x":0.76, "y": 0.04}
+                on_press: app.dob()
+                on_release: root.dismiss()
 
-                MDFloatingActionButton:
-                    id: button
-                    icon: "plus"
-                    pos_hint: {"center_x": 0.89, "center_y": 0.08}
-                    on_release: Factory.MyPopup().open()
-
-            Tab:
-                text: "Завершенные проекты"
-
-            Tab:
-                text: "Проебанные проекты"
-
-            Tab:
-                text: "Общие"
 
 
 <Tab>
     MDLabel:
-        text: root.content_text
+        #text: root.text
         pos_hint: {"center_x": .5, "center_y": .5}
+
+<ItemDrawer>:
+    theme_text_color: "Custom"
+    on_release: self.parent.set_color_item(self)
+
+    IconLeftWidget:
+        id: icon
+        icon: root.icon
+        theme_text_color: "Custom"
+        text_color: root.text_color
